@@ -15,6 +15,8 @@ class GameScene: SKScene {
     
     static let throttleMin = 1000
     static let throttleMax = 2000
+    static let stickMiddle      = 1500
+
     static let deadzone = 20
     
     var throttleVal = throttleMin
@@ -100,6 +102,7 @@ class GameScene: SKScene {
         leftStick.stopHandler = { [unowned self] in
             self.yawVal = Int(1500 + self.leftStick.data.velocity.x*5)
             yawLabel.text = "Yaw: \(self.yawVal)"
+            self.actionDelegate?.didUpdateLeftStick(throttle: self.throttleVal, yaw: self.yawVal)
         }
         
         rightStick.trackingHandler = { [unowned self] jData in
@@ -108,6 +111,8 @@ class GameScene: SKScene {
             
             self.rollVal = Int(1500 + jData.velocity.x*5)
             rollLabel.text = "Roll: \(self.rollVal)"
+            
+            self.actionDelegate?.didUpdateRightStick(pitch: self.pitchVal, roll: self.rollVal)
         }
         
         rightStick.stopHandler =  { [unowned self] in
@@ -116,6 +121,8 @@ class GameScene: SKScene {
             
             self.rollVal = Int(1500 + self.rightStick.data.velocity.x*5)
             rollLabel.text = "Roll: \(self.rollVal)"
+            
+            self.actionDelegate?.didUpdateRightStick(pitch: self.pitchVal, roll: self.rollVal)
         }
         
         //MARK: Handlers end

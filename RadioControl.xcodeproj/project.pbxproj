@@ -65,11 +65,11 @@
 			isa = PBXGroup;
 			children = (
 				23D5AB541FB2EF9000C31122 /* AppDelegate.swift */,
-				23D5AB561FB2EF9100C31122 /* ViewController.swift */,
-				23D5AB6A1FB2EFA800C31122 /* AnalogJoystick.swift */,
-				23D5AB6B1FB2EFA800C31122 /* GameScene.swift */,
 				23D5AB691FB2EFA800C31122 /* ThrottleAnalogJoyStick.swift */,
+				23D5AB6A1FB2EFA800C31122 /* AnalogJoystick.swift */,
 				23D5AB6C1FB2EFA800C31122 /* TransmitterManager.swift */,
+				23D5AB6B1FB2EFA800C31122 /* GameScene.swift */,
+				23D5AB561FB2EF9100C31122 /* ViewController.swift */,
 				23D5AB581FB2EF9100C31122 /* Main.storyboard */,
 				23D5AB5E1FB2EF9100C31122 /* Assets.xcassets */,
 				23D5AB601FB2EF9100C31122 /* LaunchScreen.storyboard */,
@@ -301,7 +301,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = maclab.RadioControl;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
 		};
@@ -316,7 +316,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = maclab.RadioControl;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;
 		};
