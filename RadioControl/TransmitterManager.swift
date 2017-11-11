@@ -1,11 +1,3 @@
-//
-//  TransmitterManager.swift
-//  RemoteVirtual
-//
-//  Created by Sorawit on 10/21/17.
-//  Copyright © 2017 Sorawit. All rights reserved.
-//
-
 import Foundation
 import UIKit
 import CoreBluetooth

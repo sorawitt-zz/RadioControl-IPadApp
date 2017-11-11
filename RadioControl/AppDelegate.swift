@@ -1,11 +1,3 @@
-//
-//  AppDelegate.swift
-//  RadioControl
-//
-//  Created by Sorawit on 11/8/17.
-//  Copyright © 2017 Sorawit. All rights reserved.
-//
-
 import UIKit
 import CoreData
 

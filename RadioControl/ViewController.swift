@@ -2,7 +2,7 @@ import UIKit
 import SpriteKit
 import CoreBluetooth
 
-class ViewController: UIViewController, TransmitterManagerDelegate, GameSceneActionDelegate {
+class ViewController: UIViewController, TransmitterManagerDelegate {
     
     var btStatus = UILabel(frame: CGRect(x: 700, y: 0, width: 200, height: 50))
 
@@ -14,6 +14,7 @@ class ViewController: UIViewController, TransmitterManagerDelegate, GameSceneAct
     
     let aux02Label = UILabel(frame:CGRect(x: 20, y: 230, width: 100, height: 20))
     let aux02Switch = UISwitch(frame:CGRect(x: 150, y: 230, width: 0, height: 0))
+    @IBOutlet var takeOffBtn: UIButton!
     
     var scene = GameScene()
     var tx = TransmitterManager()
@@ -27,7 +28,7 @@ class ViewController: UIViewController, TransmitterManagerDelegate, GameSceneAct
         self.view.addSubview(btStatus)
         
         scene = GameScene(size: self.view.bounds.size)
-        scene.actionDelegate = self
+        //scene.actionDelegate = self
         
         aux01Label.text = "AUX01: "
         self.view.addSubview(aux01Label)
@@ -144,4 +145,8 @@ class ViewController: UIViewController, TransmitterManagerDelegate, GameSceneAct
         self.roll = roll
     }
     
+    //inprogress throttle up
+    @IBAction func takeOff(){
+        throttle = throttle+2
+    }
 }
