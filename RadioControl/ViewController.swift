@@ -16,10 +16,12 @@ class ViewController: UIViewController, TransmitterManagerDelegate {
     let aux02Switch = UISwitch(frame:CGRect(x: 150, y: 230, width: 0, height: 0))
     @IBOutlet var takeOffBtn: UIButton!
     
+    
     var scene = GameScene()
     var tx = TransmitterManager()
     var timer: Timer!
-    
+    var controlTimer: Timer!
+ 
     override func viewDidLoad() {
         super.viewDidLoad()
         tx.delegate = self
@@ -78,11 +80,13 @@ class ViewController: UIViewController, TransmitterManagerDelegate {
             consoleMsg = "PWoff"
             btStatus.text = "Disconnect!"
             btStatus.textColor = UIColor.red
-        //stopSendingData()
+            //startSendingData()
+            //stopSendingData()
         case.poweredOn:
             consoleMsg = "PWon"
             btStatus.text = "Connected :)"
             btStatus.textColor = UIColor.green
+            
             startSendingData()
         case.resetting:
             consoleMsg = "Reset"
@@ -102,16 +106,15 @@ class ViewController: UIViewController, TransmitterManagerDelegate {
     
     func startSendingData() {
         timer = Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(sendData), userInfo: nil, repeats: true)
+        controlTimer = Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(updateData), userInfo: nil, repeats: true)
     }
     
     func stopSendingData() {
         timer.invalidate()
+        controlTimer.invalidate()
     }
     
     @objc func sendData() {
-        
-        let pitchRaw = scene.pitchVal
-        let rollRaw = scene.rollVal
         
         var aux01Raw = 1000
         if(aux01Switch.isOn){
@@ -126,14 +129,40 @@ class ViewController: UIViewController, TransmitterManagerDelegate {
         }else {
             aux02Raw = 1000
         }
-        
+        print("\(throttle),\(yaw),\(pitch),\(roll),\(aux01Raw),\(aux02Raw)\n")
         tx.writeValue(dataRaw: "\(throttle),\(yaw),\(pitch),\(roll),\(aux01Raw),\(aux02Raw)\n")
+    }
+    
+    @objc func updateData() {
+        if targetThrottle < throttle && throttle <= 2000 {
+            throttle = throttle - targetRate
+            
+        }
+        else if targetThrottle > throttle && throttle >= 1000 {
+            throttle = throttle + targetRate
+        }
+        
+        if targetPitch < pitch && pitch <= 2000 {
+            pitch = pitch - targetRate
+            
+        }
+        else if targetPitch > pitch && pitch >= 1000 {
+            pitch = pitch + targetRate
+        }
+        
+        
+        
+        //pitch = targetPitch < pitch ? pitch + targetRate : pitch - targetRate
     }
     
     var throttle = GameScene.throttleMin
     var yaw = GameScene.stickMiddle
     var pitch = GameScene.stickMiddle
     var roll = GameScene.stickMiddle
+    
+    let targetRate = 100
+    var targetThrottle = GameScene.throttleMin
+    var targetPitch = GameScene.stickMiddle
     
     func didUpdateLeftStick(throttle: Int, yaw: Int) {
         self.throttle = throttle
@@ -146,7 +175,31 @@ class ViewController: UIViewController, TransmitterManagerDelegate {
     }
     
     //inprogress throttle up
-    @IBAction func takeOff(){
-        throttle = throttle+2
+    @IBAction func takeOff() {
+        print("take off")
+        targetThrottle = 1800
+        wait(2000) {
+            self.targetPitch = 1600
+            print("forward")
+            wait(1000) {
+                print("ning ning")
+                self.targetPitch = 1500
+                wait(1000) {
+                    print("land")
+                    self.targetThrottle = 1000
+                }
+            }
+        }
     }
+    
+    @IBAction func takeOfFAndLand() {
+        targetThrottle = 1700
+        wait(1000){
+            self.targetThrottle = 1000
+        }
+    }
+}
+
+func wait(_ milliseconds: Int, execute: @escaping () -> Void) {
+    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + DispatchTimeInterval.milliseconds(milliseconds), execute: execute)
 }

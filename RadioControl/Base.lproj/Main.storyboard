@@ -18,26 +18,46 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E5m-7j-WYY">
-                                <rect key="frame" x="527.5" y="773" width="58" height="30"/>
+                                <rect key="frame" x="459" y="695" width="194" height="30"/>
                                 <accessibility key="accessibilityConfiguration" label="Take Off"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="58" id="A0w-VV-D2T"/>
+                                    <constraint firstAttribute="width" constant="194" id="A0w-VV-D2T"/>
                                     <constraint firstAttribute="height" constant="30" id="kRx-Xe-18k"/>
                                 </constraints>
-                                <state key="normal" title="Take Off"/>
+                                <state key="normal" title="Take off -&gt; Forward"/>
+                                <connections>
+                                    <action selector="takeOff" destination="BYZ-38-t0r" eventType="touchUpInside" id="lep-aS-CSE"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Ct-RY-0SA">
+                                <rect key="frame" x="459" y="753" width="194" height="30"/>
+                                <accessibility key="accessibilityConfiguration" label="Take Off"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="194" id="YEP-SY-JCJ"/>
+                                    <constraint firstAttribute="height" constant="30" id="q37-qa-9eG"/>
+                                </constraints>
+                                <state key="normal" title="Take off -&gt; Land"/>
+                                <connections>
+                                    <action selector="takeOfFAndLand" destination="BYZ-38-t0r" eventType="touchUpInside" id="JsE-9J-1Ls"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="E5m-7j-WYY" secondAttribute="bottom" constant="31" id="U9c-Qm-xHJ"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="6Ct-RY-0SA" secondAttribute="bottom" constant="51" id="Lvh-LD-M4E"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="E5m-7j-WYY" secondAttribute="bottom" constant="109" id="U9c-Qm-xHJ"/>
+                            <constraint firstItem="6Ct-RY-0SA" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="sUY-Oh-rIm"/>
                             <constraint firstItem="E5m-7j-WYY" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="vVF-GL-qYT"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="takeOffBtn" destination="E5m-7j-WYY" id="ccG-q1-fNd"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="116" y="118.29085457271366"/>
+            <point key="canvasLocation" x="115.46762589928058" y="117.98561151079137"/>
         </scene>
     </scenes>
 </document>
