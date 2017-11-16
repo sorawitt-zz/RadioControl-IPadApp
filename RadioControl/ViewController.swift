@@ -106,12 +106,12 @@ class ViewController: UIViewController, TransmitterManagerDelegate {
     
     func startSendingData() {
         timer = Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(sendData), userInfo: nil, repeats: true)
-        controlTimer = Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(updateData), userInfo: nil, repeats: true)
+        //controlTimer = Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(updateData), userInfo: nil, repeats: true)
     }
     
     func stopSendingData() {
         timer.invalidate()
-        controlTimer.invalidate()
+        //controlTimer.invalidate()
     }
     
     @objc func sendData() {
@@ -194,7 +194,7 @@ class ViewController: UIViewController, TransmitterManagerDelegate {
     
     @IBAction func takeOfFAndLand() {
         targetThrottle = 1700
-        wait(1000){
+        wait(2500){
             self.targetThrottle = 1000
         }
     }
